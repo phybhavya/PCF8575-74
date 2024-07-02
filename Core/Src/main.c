@@ -99,7 +99,7 @@ int main(void)
   MX_USB_OTG_FS_PCD_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-  PCF8574_Init(100);
+  PCF8574_Init(&hi2c1,100);
   /* USER CODE END 2 */
 
   /* Infinite loop */

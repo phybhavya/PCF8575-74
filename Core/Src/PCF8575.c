@@ -5,6 +5,7 @@ uint8_t read_addr;
 uint8_t write_addr;
 uint16_t timeout;
 uint8_t data[2];
+uint8_t reset[2]={0x00,0x00};
 void PCF8575_Init(uint8_t addr_t, uint16_t timeout_t){
     read_addr = addr_t|0x01;
     write_addr = addr_t;
@@ -19,6 +20,6 @@ int PCF8575_read(I2C_HandleTypeDef *hi2c){
     rec_data = (data[0]<<8|data[1]);
     return rec_data;
 }
-void PCF8575_Setpin(){
-    uint16_t bt;
+void PCF8575_Reset(I2C_HandleTypeDef *hi2c){
+    HAL_I2C_Master_Transmit(hi2c,write_addr,reset,2,timeout);
 }
